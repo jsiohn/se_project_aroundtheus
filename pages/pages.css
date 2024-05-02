@@ -81,3 +81,37 @@
     height: 50px;
     margin-left: auto;
 }
+
+.cards {
+    /* fonts */
+}
+
+.card__list {
+    display: grid;
+}
+
+.card {
+    display: flex;
+}
+
+.card__image {
+    width: 282px;
+    height: 282px;
+}
+
+.card__description {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    color: #000;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.card__like-button {
+    background: transparent url(../images/heart.svg) center no-repeat;
+    width: 21px;
+    height: 18px;
+}
