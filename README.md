@@ -14,4 +14,4 @@ This project is called Around the US! It is a site built to practice responsive 
   
 * [Link to the project on GitHub Pages](https://jsiohn.github.io/se_project_aroundtheus/)  
   
-
+* [Link to the video description](https://drive.proton.me/urls/99THZP2500#5fV22MBykQcp)
