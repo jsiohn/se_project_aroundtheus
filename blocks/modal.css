@@ -57,10 +57,6 @@
   flex-direction: column;
 }
 
-input:last-child {
-  margin-bottom: 48px;
-}
-
 .modal__form-input {
   font-weight: 400;
   font-size: 14px;
