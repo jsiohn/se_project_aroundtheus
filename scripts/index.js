@@ -30,16 +30,20 @@ const profileEditBtn = document.querySelector("#profile-edit-button");
 const profileAddBtn = document.querySelector("#profile-add-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileAddModal = document.querySelector("#profile-add-modal");
+const imageModal = document.querySelector("#image-modal");
 const profileEditCloseBtn = profileEditModal.querySelector(
   "#modal-close-button"
 );
 const profileAddCloseBtn = profileAddModal.querySelector("#modal-close-button");
+const imageModalCloseBtn = imageModal.querySelector(".modal__close");
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 const profileTitleInput = document.querySelector("#profile-name");
 const profileDescriptionInput = document.querySelector("#profile-description");
 const profileFormElement = profileEditModal.querySelector(".modal__form");
 const profileAddElement = profileAddModal.querySelector(".modal__form");
+const imageModalImage = imageModal.querySelector(".modal__image");
+const imageModalTitle = imageModal.querySelector(".modal__image-title");
 const cardListEl = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
@@ -73,6 +77,13 @@ function getCardElement(cardData) {
   cardNameEl.textContent = cardData.name;
   cardImageEl.alt = cardData.name;
   cardImageEl.src = cardData.link;
+
+  cardImageEl.addEventListener("click", () => {
+    imageModalImage.src = cardData.link;
+    imageModalImage.alt = cardData.name;
+    imageModalTitle.textContent = cardData.name;
+    openModal(imageModal);
+  });
   return cardElement;
 }
 
@@ -111,6 +122,8 @@ profileEditCloseBtn.addEventListener("click", () =>
 );
 
 profileAddCloseBtn.addEventListener("click", () => closeModal(profileAddModal));
+
+imageModalCloseBtn.addEventListener("click", () => closeModal(imageModal));
 
 profileFormElement.addEventListener("submit", handleProfileEditSubmit);
 profileAddElement.addEventListener("submit", handleProfileAddSubmit);

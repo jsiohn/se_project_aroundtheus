@@ -3,17 +3,22 @@
   position: fixed;
   align-items: center;
   justify-content: center;
-  display: none;
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
   background-color: rgba(0, 0, 0, 0.5);
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 999;
+  transition: visibility 0s 0.6s, opacity 0.6s;
 }
 
 .modal_opened {
-  display: flex;
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.6s;
 }
 
 .modal__container {
@@ -83,6 +88,21 @@
 
 .modal__button:hover {
   opacity: 80%;
+}
+
+.modal__image-container {
+  position: relative;
+}
+
+.modal__image {
+  max-width: 75vw;
+  max-height: 75vh;
+}
+
+.modal__image-title {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
 }
 
 @media screen and (max-width: 620px) {
