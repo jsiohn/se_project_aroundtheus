@@ -44,6 +44,7 @@ const cardTemplate =
 const cardTitleInput = profileAddElement.querySelector("#card-name");
 const cardUrlInput = profileAddElement.querySelector("#card-url");
 
+
 // Functions
 function openModal(modal) {
   modal.classList.add("modal_opened");
@@ -57,6 +58,17 @@ function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardNameEl = cardElement.querySelector(".card__name");
+  const likeButton = cardElement.querySelector(".card__like-button");
+// find delete button
+//add event listener to delete button
+//cardElement.remove(); when delete button clicked
+
+//add click listener to card image to open new modal
+//use opemModal with previewImageModal
+
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active");
+  });
   cardNameEl.textContent = cardData.name;
   cardImageEl.alt = cardData.name;
   cardImageEl.src = cardData.link;
@@ -101,3 +113,4 @@ profileFormElement.addEventListener("submit", handleProfileEditSubmit);
 profileAddElement.addEventListener("submit", handleProfileAddSubmit);
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
+
