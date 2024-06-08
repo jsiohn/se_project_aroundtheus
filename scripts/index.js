@@ -60,15 +60,15 @@ function getCardElement(cardData) {
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardNameEl = cardElement.querySelector(".card__name");
   const likeButton = cardElement.querySelector(".card__like-button");
-  // find delete button
-
-  //add event listener to delete button
-  //cardElement.remove(); when delete button clicked
   //add click listener to card image to open new modal
   //use openModal with previewImageModal
 
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_active");
+  });
+  const cardDeleteBtn = cardElement.querySelector(".card__delete-button");
+  cardDeleteBtn.addEventListener("click", () => {
+    cardElement.remove();
   });
   cardNameEl.textContent = cardData.name;
   cardImageEl.alt = cardData.name;
@@ -116,9 +116,3 @@ profileFormElement.addEventListener("submit", handleProfileEditSubmit);
 profileAddElement.addEventListener("submit", handleProfileAddSubmit);
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
-
-const cardDeleteBtn = document.querySelector(".card__delete-button");
-
-cardDeleteBtn.addEventListener("click", () => {
-  cardElement.remove();
-});
