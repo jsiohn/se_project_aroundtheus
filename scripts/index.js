@@ -34,14 +34,15 @@ const profileEditCloseBtn = profileEditModal.querySelector("#modal-close-button"
 const profileAddCloseBtn = profileAddModal.querySelector("#modal-close-button");
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
-const profileTitleInput = document.querySelector("#name");
-const profileDescriptionInput = document.querySelector("#description");
+const profileTitleInput = document.querySelector("#profile-name");
+const profileDescriptionInput = document.querySelector("#profile-description");
 const profileFormElement = profileEditModal.querySelector(".modal__form");
 const profileAddElement = profileAddModal.querySelector(".modal__form");
 const cardListEl = document.querySelector(".cards__list");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 const cardTitleInput = profileAddElement.querySelector("#card-name");
+const cardUrlInput = profileAddElement.querySelector("#card-url");
 
 // Functions
 function openModal(modal) {
@@ -62,6 +63,11 @@ function getCardElement(cardData) {
   return cardElement;
 }
 
+function renderCard(cardData) {
+  const cardElement = getCardElement(cardData);
+  cardListEl.prepend(cardElement);
+}
+
 // Event Handlers
 function handleProfileEditSubmit(e) {
   e.preventDefault();
@@ -72,7 +78,9 @@ function handleProfileEditSubmit(e) {
 
 function handleProfileAddSubmit(e) {
   e.preventDefault();
-  const cardElement = getCardElement();
+  const name = cardTitleInput.value;
+  const link = cardUrlInput.value;
+  renderCard({name, link}, cardListEl);
   closeModal(profileAddModal);
 }
 
@@ -90,8 +98,6 @@ profileEditCloseBtn.addEventListener("click", () => closeModal(profileEditModal)
 profileAddCloseBtn.addEventListener("click", () => closeModal(profileAddModal));
  
 profileFormElement.addEventListener("submit", handleProfileEditSubmit);
+profileAddElement.addEventListener("submit", handleProfileAddSubmit);
 
-initialCards.forEach((cardData) => {
-  const cardElement = getCardElement(cardData);
-  cardListEl.prepend(cardElement);
-});
+initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
