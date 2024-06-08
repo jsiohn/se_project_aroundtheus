@@ -32,7 +32,11 @@
             ></button>
             <p class="profile__description">Explorer</p>
           </div>
-          <button class="profile__add-button" type="button" id="profile-add-button"></button>
+          <button
+            class="profile__add-button"
+            type="button"
+            id="profile-add-button"
+          ></button>
         </section>
         <section class="cards page__section">
           <ul class="cards__list"></ul>
@@ -42,7 +46,7 @@
         <p class="footer__copyright">© 2022 Around The U.S.</p>
       </footer>
     </div>
-    
+
     <!-- EDIT MODAL -->
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
@@ -96,8 +100,11 @@
         </form>
       </div>
     </div>
+
+    <!-- CARD TEMPLATE -->
     <template id="card-template">
       <li class="card">
+        <button class="card__delete-button" type="button"></button>
         <img src="" alt="" class="card__image" />
         <div class="card__description">
           <h2 class="card__name"></h2>
@@ -105,6 +112,7 @@
         </div>
       </li>
     </template>
+
     <script src="./scripts/index.js" defer></script>
   </body>
 </html>
