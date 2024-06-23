@@ -47,7 +47,7 @@
       </footer>
     </div>
 
-    <!-- EDIT MODAL -->
+    <!-- ----------------------------- EDIT MODAL ------------------------------ -->
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
         <button class="modal__close" id="modal-close-button"></button>
@@ -59,22 +59,28 @@
             id="profile-name"
             class="modal__form-input"
             placeholder="Name"
+            minlength="2"
+            maxlength="40"
             required
           />
+          <span class="modal__error" id="profile-name-error"></span>
           <input
             type="text"
             name="description"
             id="profile-description"
             class="modal__form-input"
             placeholder="Description"
+            minlength="2"
+            maxlength="200"
             required
           />
+          <span class="modal__error" id="profile-description-error"></span>
           <button class="modal__button" type="submit">Save</button>
         </form>
       </div>
     </div>
 
-    <!-- ADD MODAL -->
+    <!-- ------------------------------ ADD MODAL ------------------------------ -->
     <div class="modal" id="profile-add-modal">
       <div class="modal__container">
         <button class="modal__close" id="modal-close-button"></button>
@@ -86,22 +92,32 @@
             id="card-name"
             class="modal__form-input"
             placeholder="Title"
+            minlength="1"
+            maxlength="30"
             required
           />
+          <span class="modal__error" id="card-name-error"></span>
           <input
-            type="text"
+            type="url"
             name="url"
             id="card-url"
             class="modal__form-input"
             placeholder="Image URL"
             required
           />
-          <button class="modal__button" type="submit">Save</button>
+          <span class="modal__error" id="card-url-error"></span>
+          <button
+            class="modal__button modal__button_disabled"
+            type="submit"
+            disabled
+          >
+            Save
+          </button>
         </form>
       </div>
     </div>
 
-    <!-- PICTURE MODAL -->
+    <!-- ---------------------------- PICTURE MODAL ---------------------------- -->
     <div class="modal" id="image-modal">
       <div class="modal__image-container">
         <button class="modal__close"></button>
@@ -110,7 +126,7 @@
       </div>
     </div>
 
-    <!-- CARD TEMPLATE -->
+    <!-- ---------------------------- CARD TEMPLATE ---------------------------- -->
     <template id="card-template">
       <li class="card">
         <button class="card__delete-button" type="button"></button>
@@ -123,5 +139,6 @@
     </template>
 
     <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/validation.js" defer></script>
   </body>
 </html>
