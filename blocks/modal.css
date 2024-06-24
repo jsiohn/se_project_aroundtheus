@@ -72,6 +72,20 @@
   margin-bottom: 30px;
 }
 
+.modal__form-input_type_error {
+  border-bottom: solid 1px #ff0000;
+  margin-bottom: 0;
+}
+
+.modal__error_visible {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff0000;
+  margin-bottom: 30px;
+  margin-top: 5px;
+}
+
 .modal__button {
   cursor: pointer;
   font-weight: 400;
@@ -88,6 +102,12 @@
 
 .modal__button:hover {
   opacity: 80%;
+}
+
+.modal__button_disabled {
+  border-radius: 2px;
+  border: 1px solid #000;
+  opacity: 20%;
 }
 
 .modal__image-container {

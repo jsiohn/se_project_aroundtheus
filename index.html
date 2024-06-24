@@ -63,7 +63,9 @@
             maxlength="40"
             required
           />
-          <span class="modal__error" id="profile-name-error"></span>
+          <span class="modal__error" id="profile-name-error"
+            >Please fill out this field.</span
+          >
           <input
             type="text"
             name="description"
@@ -74,7 +76,9 @@
             maxlength="200"
             required
           />
-          <span class="modal__error" id="profile-description-error"></span>
+          <span class="modal__error" id="profile-description-error"
+            >Please fill out this field.</span
+          >
           <button class="modal__button" type="submit">Save</button>
         </form>
       </div>
@@ -96,7 +100,9 @@
             maxlength="30"
             required
           />
-          <span class="modal__error" id="card-name-error"></span>
+          <span class="modal__error" id="card-name-error"
+            >Please fill out this field.</span
+          >
           <input
             type="url"
             name="url"
@@ -105,14 +111,10 @@
             placeholder="Image URL"
             required
           />
-          <span class="modal__error" id="card-url-error"></span>
-          <button
-            class="modal__button modal__button_disabled"
-            type="submit"
-            disabled
+          <span class="modal__error" id="card-url-error"
+            >Please enter a web address.</span
           >
-            Save
-          </button>
+          <button class="modal__button" type="submit" disabled>Save</button>
         </form>
       </div>
     </div>
