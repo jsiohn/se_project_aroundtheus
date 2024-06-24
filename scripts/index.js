@@ -107,6 +107,24 @@ function handleProfileAddSubmit(e) {
 }
 
 /* ----------------------------- Event Listeners ---------------------------- */
+profileEditModal.addEventListener("click", (e) => {
+  if (e.target == profileEditModal) {
+    closeModal(profileEditModal);
+  }
+});
+
+profileAddModal.addEventListener("click", (e) => {
+  if (e.target == profileAddModal) {
+    closeModal(profileAddModal);
+  }
+});
+
+imageModal.addEventListener("click", (e) => {
+  if (e.target == imageModal) {
+    closeModal(imageModal);
+  }
+});
+
 profileEditBtn.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
