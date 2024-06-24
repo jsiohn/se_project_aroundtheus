@@ -53,10 +53,25 @@ const cardUrlInput = profileAddElement.querySelector("#card-url");
 /* -------------------------------- Functions ------------------------------- */
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", closeModalEsc);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", closeModalEsc);
+}
+
+function closeModalClick(e) {
+  if (e.target === e.currentTarget) {
+    closeModal(e.currentTarget);
+  }
+}
+
+function closeModalEsc(e) {
+  if (e.key === "Escape") {
+    const openedModal = document.querySelector(".modal_opened");
+    closeModal(openedModal);
+  }
 }
 
 function getCardElement(cardData) {
@@ -107,23 +122,11 @@ function handleProfileAddSubmit(e) {
 }
 
 /* ----------------------------- Event Listeners ---------------------------- */
-profileEditModal.addEventListener("click", (e) => {
-  if (e.target == profileEditModal) {
-    closeModal(profileEditModal);
-  }
-});
+profileEditModal.addEventListener("click", closeModalClick);
 
-profileAddModal.addEventListener("click", (e) => {
-  if (e.target == profileAddModal) {
-    closeModal(profileAddModal);
-  }
-});
+profileAddModal.addEventListener("click", closeModalClick);
 
-imageModal.addEventListener("click", (e) => {
-  if (e.target == imageModal) {
-    closeModal(imageModal);
-  }
-});
+imageModal.addEventListener("click", closeModalClick);
 
 profileEditBtn.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
