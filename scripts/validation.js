@@ -7,8 +7,6 @@ const config = {
   errorClass: "modal__error_visible",
 };
 
-enableValidation(config);
-
 function showInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
   const errorMessageEl = formEl.querySelector(`#${inputEl.id}-error`);
   inputEl.classList.add(inputErrorClass);
@@ -69,3 +67,5 @@ function enableValidation(config) {
     setEvenetListeners(formEl, config);
   });
 }
+
+enableValidation(config);
