@@ -6,6 +6,7 @@ This project is called Around the US! It is a site built to practice responsive 
   
 **Technologies**
   
+  * HTML/CSS/Javascript
   * Responsive design using Flexbox and Grid
   * Figma for design concept
   * BEM for classes and file structure
