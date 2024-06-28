@@ -119,6 +119,7 @@ function handleProfileAddSubmit(e) {
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardListEl);
   closeModal(profileAddModal);
+  e.target.reset();
 }
 
 /* ----------------------------- Event Listeners ---------------------------- */
