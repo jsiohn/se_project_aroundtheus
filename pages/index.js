@@ -1,4 +1,14 @@
 import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+
+const settings = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__form-input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__form-input_type_error",
+  errorClass: "modal__error_visible",
+};
 
 const initialCards = [
   {
@@ -55,8 +65,6 @@ const profileAddElement = profileAddModal.querySelector(".modal__form");
 const imageModalImage = imageModal.querySelector(".modal__image");
 const imageModalTitle = imageModal.querySelector(".modal__image-title");
 const cardListEl = document.querySelector(".cards__list");
-// const cardTemplate =
-//   document.querySelector("#card-template").content.firstElementChild;
 const cardTitleInput = profileAddElement.querySelector("#card-name");
 const cardUrlInput = profileAddElement.querySelector("#card-url");
 
@@ -83,25 +91,6 @@ function closeModalEsc(e) {
     closeModal(openedModal);
   }
 }
-
-// function getCardElement(cardData) {
-//   // const cardElement = cardTemplate.cloneNode(true);
-//   // const cardImageEl = cardElement.querySelector(".card__image");
-//   // const cardNameEl = cardElement.querySelector(".card__name");
-//   // const likeButton = cardElement.querySelector(".card__like-button");
-//   // const cardDeleteBtn = cardElement.querySelector(".card__delete-button");
-//   // cardNameEl.textContent = cardData.name;
-//   // cardImageEl.alt = cardData.name;
-//   // cardImageEl.src = cardData.link;
-//   // likeButton.addEventListener("click", () => {
-//   //   likeButton.classList.toggle("card__like-button_active");
-//   // });
-//   // cardDeleteBtn.addEventListener("click", () => {
-//   //   cardElement.remove();
-//   // });
-//   // cardImageEl.addEventListener("click", handleImageClick);
-//   // return cardElement;
-// }
 
 function renderCard(cardData) {
   const cardElement = createCard(cardData);
@@ -164,3 +153,9 @@ profileFormElement.addEventListener("submit", handleProfileEditSubmit);
 profileAddElement.addEventListener("submit", handleProfileAddSubmit);
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
+
+const editFormValidator = new FormValidator(settings, editForm);
+editFormValidator.enableValidation();
+
+const addFormValidator = new FormValidator(settings, addForm);
+addFormValidator.enableValidation();
