@@ -1,15 +1,6 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 
-const settings = {
-  formSelector: ".modal__form",
-  inputSelector: ".modal__form-input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
-  inputErrorClass: "modal__form-input_type_error",
-  errorClass: "modal__error_visible",
-};
-
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -36,6 +27,15 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
+
+const settings = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__form-input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__form-input_type_error",
+  errorClass: "modal__error_visible",
+};
 
 const cardData = {
   name: "Yosemite Valley",
@@ -141,21 +141,23 @@ profileEditBtn.addEventListener("click", () => {
 
 profileAddBtn.addEventListener("click", () => openModal(profileAddModal));
 
-profileEditCloseBtn.addEventListener("click", () =>
+profileEditCloseBtn.addEventListener("mousedown", () =>
   closeModal(profileEditModal)
 );
 
-profileAddCloseBtn.addEventListener("click", () => closeModal(profileAddModal));
+profileAddCloseBtn.addEventListener("mousedown", () =>
+  closeModal(profileAddModal)
+);
 
-imageModalCloseBtn.addEventListener("click", () => closeModal(imageModal));
+imageModalCloseBtn.addEventListener("mousedown", () => closeModal(imageModal));
 
 profileFormElement.addEventListener("submit", handleProfileEditSubmit);
 profileAddElement.addEventListener("submit", handleProfileAddSubmit);
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 
-const editFormValidator = new FormValidator(settings, editForm);
+const editFormValidator = new FormValidator(settings, profileFormElement);
 editFormValidator.enableValidation();
 
-const addFormValidator = new FormValidator(settings, addForm);
+const addFormValidator = new FormValidator(settings, profileAddElement);
 addFormValidator.enableValidation();
