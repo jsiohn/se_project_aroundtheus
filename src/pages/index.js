@@ -63,7 +63,7 @@ const cardSection = new Section(
   { items: initialCards, renderer: renderCard },
   ".cards__list"
 );
-cardSection.renderItems(initialCards);
+cardSection.renderItems(cardData);
 
 const user = new UserInfo(".profile__title", ".profile__description");
 
@@ -71,21 +71,18 @@ const user = new UserInfo(".profile__title", ".profile__description");
 /*                                  Functions                                 */
 /* -------------------------------------------------------------------------- */
 function handleProfileEditSubmit(profileData) {
-  e.preventDefault();
-  const name = profileData.title;
-  const description = profileData.subheader;
-  user.setUserInfo(name, description);
+  const title = profileData.title;
+  const description = profileData.description;
+  user.setUserInfo(title, description);
   editProfilePopup.close();
 }
 
 function handleProfileAddSubmit(newCardData, cardListEl) {
-  e.preventDefault();
   const name = newCardData.title;
   const alt = newCardData.title;
   const link = newCardData.url;
   renderCard({ name, alt, link });
   addCardPopup.close();
-  e.target.reset();
 }
 
 function handleImageClick(name, link) {
@@ -103,7 +100,7 @@ function createCard(cardData) {
 profileEditBtn.addEventListener("click", () => {
   const userInput = user.getUserInfo();
   editProfilePopup.setInputValues({
-    title: userInput.name,
+    title: userInput.title,
     description: userInput.description,
   });
   // editFormValidator.resetValidation();
