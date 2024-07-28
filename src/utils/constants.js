@@ -25,20 +25,6 @@ export const initialCards = [
   },
 ];
 
-// export const selectors = {
-//   profileTitle: ".profile__title",
-//   profileDescription: ".profile__description",
-//   profileTitleInput: "#profile-name",
-//   profileDescriptionInput: "#profile-description",
-//   cardSection: ".card__list",
-//   cardTemplate: "#card-template",
-//   cardTitleInput: "#card-name",
-//   cardUrlInput: "#card-url",
-//   previewPopup: "#image-modal",
-//   editPopup: "#profile-edit-modal",
-//   addPopup: "#profile-add-modal",
-// };
-
 export const settings = {
   formSelector: ".modal__form",
   inputSelector: ".modal__form-input",
