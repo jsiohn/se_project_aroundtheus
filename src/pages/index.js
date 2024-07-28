@@ -2,7 +2,7 @@
 /*                                   Imports                                  */
 /* -------------------------------------------------------------------------- */
 import "./index.css";
-import { initialCards, settings } from "../utils/constants";
+import { initialCards, settings, cardData } from "../utils/constants";
 import Card from "../components/Card";
 import FormValidator from "../components/FormValidator";
 import Section from "../components/Section";
@@ -93,7 +93,7 @@ function handleImageClick(name, link) {
 }
 
 function createCard(cardData) {
-  return new Card(cardData, "#card-template", handleImageClick).getView();
+  return new Card({ cardData, handleImageClick }, "#card-template").getView();
 }
 
 /* -------------------------------------------------------------------------- */
@@ -106,13 +106,13 @@ profileEditBtn.addEventListener("click", () => {
     title: userInput.name,
     description: userInput.description,
   });
-  editFormValidator.resetValidation();
+  // editFormValidator.resetValidation();
   editProfilePopup.open();
 });
 
 //New Card Form
 profileAddBtn.addEventListener("click", () => {
-  newCardPopup.open();
+  addCardPopup.open();
   addFormValidator._toggleButtonState();
 });
 
