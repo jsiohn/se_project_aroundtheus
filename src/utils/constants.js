@@ -48,7 +48,7 @@ export const settings = {
   errorClass: "modal__error_visible",
 };
 
-// export const cardData = {
-//   name: "Yosemite Valley",
-//   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-// };
+export const cardData = {
+  name: "Yosemite Valley",
+  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+};

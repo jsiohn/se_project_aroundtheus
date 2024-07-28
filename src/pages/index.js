@@ -83,7 +83,7 @@ function handleProfileAddSubmit(newCardData, cardListEl) {
   const name = newCardData.title;
   const alt = newCardData.title;
   const link = newCardData.url;
-  renderCard({ name, link }, cardListEl);
+  renderCard({ name, alt, link });
   addCardPopup.close();
   e.target.reset();
 }
