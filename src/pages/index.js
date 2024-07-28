@@ -94,7 +94,7 @@ profileEditBtn.addEventListener("click", () => {
 //New Card Form
 profileAddBtn.addEventListener("click", () => {
   addCardPopup.open();
-  addFormValidator._toggleButtonState();
+  addFormValidator.toggleButtonState();
 });
 
 /* -------------------------------------------------------------------------- */
