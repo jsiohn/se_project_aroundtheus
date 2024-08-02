@@ -159,3 +159,13 @@ editFormValidator.enableValidation();
 
 const addFormValidator = new FormValidator(settings, profileAddElement);
 addFormValidator.enableValidation();
+
+fetch("https://around-api.en.tripleten-services.com/v1", {
+  headers: {
+    authorization: "b7515436-5dfa-4f13-a09a-5183c1df5fb3",
+  },
+})
+  .then((res) => res.json())
+  .then((result) => {
+    console.log(result);
+  });
