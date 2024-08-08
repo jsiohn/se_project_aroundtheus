@@ -1,16 +1,15 @@
 //personal token: b7515436-5dfa-4f13-a09a-5183c1df5fb3
 
-class Api {
-  constructor() {
-    this._baseUrl = "https://around-api.en.tripleten-services.com/v1";
+export default class Api {
+  constructor({ baseUrl, headers }) {
+    this._baseUrl = baseUrl;
+    this._headers = headers;
   }
 
   getUserData() {
-    return fetch("https://around-api.en.tripleten-services.com/v1/users/me", {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
-      headers: {
-        authorization: "b7515436-5dfa-4f13-a09a-5183c1df5fb3",
-      },
+      headers: this._headers,
     }).then((res) => {
       if (res.ok) {
         return res.json();
@@ -20,11 +19,9 @@ class Api {
   }
 
   getInitialCards() {
-    return fetch("https://around-api.en.tripleten-services.com/v1/cards", {
+    return fetch(`${this._baseUrl}/cards`, {
       method: "GET",
-      headers: {
-        authorization: "b7515436-5dfa-4f13-a09a-5183c1df5fb3",
-      },
+      headers: this._headers,
     }).then((res) => {
       if (res.ok) {
         return res.json();
@@ -33,16 +30,13 @@ class Api {
     });
   }
 
-  editProfile() {
-    return fetch("https://around-api.en.tripleten-services.com/v1/users/me", {
+  editProfile(name, about) {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      headers: {
-        authorization: "b7515436-5dfa-4f13-a09a-5183c1df5fb3",
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify({
-        name: "",
-        about: "",
+        name: name,
+        about: about,
       }),
     }).then((res) => {
       if (res.ok) {
@@ -52,16 +46,13 @@ class Api {
     });
   }
 
-  addNewCard() {
-    return fetch("https://around-api.en.tripleten-services.com/v1/cards", {
+  addNewCard(name, link) {
+    return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
-      headers: {
-        authorization: "b7515436-5dfa-4f13-a09a-5183c1df5fb3",
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify({
-        name: "",
-        link: "",
+        name: name,
+        link: link,
       }),
     }).then((res) => {
       if (res.ok) {
@@ -72,15 +63,10 @@ class Api {
   }
 
   deleteCard() {
-    return fetch(
-      "https://around-api.en.tripleten-services.com/v1/cards/cardId",
-      {
-        method: "DELETE",
-        headers: {
-          authorization: "b7515436-5dfa-4f13-a09a-5183c1df5fb3",
-        },
-      }
-    ).then((res) => {
+    return fetch(`${this.baseUrl}/cards/cardId`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then((res) => {
       if (res.ok) {
         return res.json();
       }
@@ -89,15 +75,10 @@ class Api {
   }
 
   addLike() {
-    return fetch(
-      "https://around-api.en.tripleten-services.com/v1/cards/cardId/likes",
-      {
-        method: "PUT",
-        headers: {
-          authorization: "b7515436-5dfa-4f13-a09a-5183c1df5fb3",
-        },
-      }
-    ).then((res) => {
+    return fetch(`${this._baseUrl}/cards/cardId/likes`, {
+      method: "PUT",
+      headers: this._headers,
+    }).then((res) => {
       if (res.ok) {
         return res.json();
       }
@@ -106,15 +87,10 @@ class Api {
   }
 
   deleteLike() {
-    return fetch(
-      "https://around-api.en.tripleten-services.com/v1/cards/cardId/likes",
-      {
-        method: "DELETE",
-        headers: {
-          authorization: "b7515436-5dfa-4f13-a09a-5183c1df5fb3",
-        },
-      }
-    ).then((res) => {
+    return fetch(`${this._baseUrl}/cards/cardId/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then((res) => {
       if (res.ok) {
         return res.json();
       }
@@ -122,19 +98,14 @@ class Api {
     });
   }
 
-  updateProfilePic() {
-    return fetch(
-      "https://around-api.en.tripleten-services.com/v1/users/me/avatar",
-      {
-        method: "PATCH",
-        headers: {
-          authorization: "b7515436-5dfa-4f13-a09a-5183c1df5fb3",
-        },
-        body: JSON.stringify({
-          avater: "",
-        }),
-      }
-    ).then((res) => {
+  updateProfilePic(link) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: link,
+      }),
+    }).then((res) => {
       if (res.ok) {
         return res.json();
       }

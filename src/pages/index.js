@@ -9,6 +9,7 @@ import Section from "../components/Section";
 import PopupWithImage from "../components/PopupWithImage";
 import PopupWithForm from "../components/PopupWithForm";
 import UserInfo from "../components/UserInfo";
+import Api from "../components/Api";
 
 /* -------------------------------------------------------------------------- */
 /*                                  Elements                                  */
@@ -16,10 +17,20 @@ import UserInfo from "../components/UserInfo";
 
 const profileEditBtn = document.querySelector("#profile-edit-button");
 const profileAddBtn = document.querySelector("#profile-add-button");
+const profileAvatarBtn = document.querySelector("#avatar-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
 const profileAddModal = document.querySelector("#profile-add-modal");
+const profileAvatarModal = document.querySelector("#avatar-modal");
 const profileFormElement = profileEditModal.querySelector(".modal__form");
+const profileEditSubmitBtn = profileEditModal.querySelector(
+  "#profile-edit-submit"
+);
 const profileAddElement = profileAddModal.querySelector(".modal__form");
+const profileAddSubmitBtn = profileAddModal.querySelector("#card-add-submit");
+const profileAvatarElement = profileAvatarModal.querySelector(".modal__form");
+const profileAvatarSubmitBtn = profileAvatarModal.querySelector(
+  "#avatar-edit-submit"
+);
 
 const renderCard = (cardData) => {
   const cardElement = createCard(cardData);
@@ -51,6 +62,14 @@ const cardSection = new Section(
 cardSection.renderItems(cardData);
 
 const user = new UserInfo(".profile__title", ".profile__description");
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "b7515436-5dfa-4f13-a09a-5183c1df5fb3",
+    "Content-Type": "application/json",
+  },
+});
 
 /* -------------------------------------------------------------------------- */
 /*                                  Functions                                 */
@@ -104,3 +123,6 @@ editFormValidator.enableValidation();
 
 const addFormValidator = new FormValidator(settings, profileAddElement);
 addFormValidator.enableValidation();
+
+const avatarFormValidator = new FormValidator(settings, profileAvatarElement);
+avatarFormValidator.enableValidation();
