@@ -30,10 +30,19 @@ export default class Api {
     });
   }
 
+  getUserAndCards() {
+    return Promise.all([this.getUserData(), this.getInitialCards()]).then(
+      ([userInfo, cards]) => {
+        console.log([userInfo, cards]);
+        return { userInfo, cards };
+      }
+    );
+  }
+
   editProfile(name, about) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: { ...this._headers },
       body: JSON.stringify({
         name: name,
         about: about,
@@ -49,7 +58,7 @@ export default class Api {
   addNewCard(name, link) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
-      headers: this._headers,
+      headers: { ...this._headers },
       body: JSON.stringify({
         name: name,
         link: link,
@@ -62,8 +71,8 @@ export default class Api {
     });
   }
 
-  deleteCard() {
-    return fetch(`${this.baseUrl}/cards/cardId`, {
+  deleteCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
     }).then((res) => {
@@ -75,7 +84,7 @@ export default class Api {
   }
 
   addLike() {
-    return fetch(`${this._baseUrl}/cards/cardId/likes`, {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "PUT",
       headers: this._headers,
     }).then((res) => {
@@ -87,7 +96,7 @@ export default class Api {
   }
 
   deleteLike() {
-    return fetch(`${this._baseUrl}/cards/cardId/likes`, {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
     }).then((res) => {
@@ -101,7 +110,7 @@ export default class Api {
   updateProfilePic(link) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: { ...this._headers },
       body: JSON.stringify({
         avatar: link,
       }),
