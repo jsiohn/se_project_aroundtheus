@@ -148,7 +148,7 @@ function handleLikes(cardData) {
     //if not liked
     console.log(cardData.like);
     api
-      .addLike(cardData.id)
+      .addLike(cardData._id)
       .then(() => {
         cardData.updateLike(true);
       })
@@ -157,8 +157,9 @@ function handleLikes(cardData) {
       });
   } else if (cardData.like) {
     //if liked
+    console.log(cardData.like);
     api
-      .deleteLike(cardData.id)
+      .deleteLike(cardData._id)
       .then(() => {
         cardData.updateLike(false);
       })
@@ -179,9 +180,9 @@ function handleCardDelete(cardData) {
   console.log(cardData);
   deleteConfirmationBtn.textContent = "Deleting...";
   api
-    .deleteCard(cardData.id)
+    .deleteCard(cardData._id)
     .then(() => {
-      cardData.removeCard(cardData.id);
+      cardData.removeCard(cardData._id);
       deleteConfirmation.close();
     })
     .catch((err) => {
