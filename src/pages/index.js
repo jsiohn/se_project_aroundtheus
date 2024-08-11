@@ -96,7 +96,9 @@ function handleProfileEditSubmit(profileData) {
     .editProfile(profileData.title, profileData.description)
     .then(() => {
       user.setUserInfo({ name, job });
+      editFormValidator.disableSubmitButton();
       editProfilePopup.close();
+      profileFormElement.reset();
     })
     .catch((err) => {
       console.error(err);
@@ -113,7 +115,9 @@ function handleProfileAddSubmit(newCardData) {
     .addNewCard(newCardData.title, newCardData.url)
     .then((newCardData) => {
       const cardElement = createCard(newCardData);
+      addFormValidator.disableSubmitButton();
       addCardPopup.close();
+      profileAddElement.reset();
       cardSection.addItem(cardElement);
     })
     .catch((err) => {
@@ -132,7 +136,9 @@ function handleAvatarEditSubmit(link) {
     .updateProfilePic(url)
     .then(() => {
       user.setUserAvatar(url);
+      avatarFormValidator.disableSubmitButton();
       editAvatarPopup.close();
+      profileAvatarElement.reset();
     })
     .catch((err) => {
       console.error(err);
@@ -232,7 +238,7 @@ profileAvatarBtn.addEventListener("click", () => {
   editAvatarPopup.open();
 });
 
-profileAvatarSubmitBtn.addEventListener("submit", handleAvatarEditSubmit);
+// profileAvatarSubmitBtn.addEventListener("submit", handleAvatarEditSubmit);
 
 /* -------------------------------------------------------------------------- */
 /*                               Initial Render                               */
@@ -241,11 +247,11 @@ let cardSection;
 
 api
   .getUserAndCards()
-  .then(([userInfo, initialCards]) => {
-    console.log([userInfo, initialCards]); //debugging
+  .then(([userInfo, cardData]) => {
+    console.log([userInfo, cardData]); //debugging
     cardSection = new Section(
       {
-        items: initialCards,
+        items: cardData,
         renderer: (cardData) => {
           const cardElement = createCard(cardData);
           cardSection.addItem(cardElement);
