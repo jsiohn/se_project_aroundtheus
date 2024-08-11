@@ -31,12 +31,7 @@ export default class Api {
   }
 
   getUserAndCards() {
-    return Promise.all([this.getUserData(), this.getInitialCards()]).then(
-      ([userInfo, cards]) => {
-        console.log([userInfo, cards]);
-        return { userInfo, cards };
-      }
-    );
+    return Promise.all([this.getUserData(), this.getInitialCards()]);
   }
 
   editProfile(name, about) {

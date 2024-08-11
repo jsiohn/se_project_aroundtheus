@@ -11,6 +11,7 @@ import PopupWithForm from "../components/PopupWithForm";
 import UserInfo from "../components/UserInfo";
 import Api from "../components/Api";
 import PopupWithConfirm from "../components/PopupWithConfirm";
+import { data } from "autoprefixer";
 
 /* -------------------------------------------------------------------------- */
 /*                                  Elements                                  */
@@ -38,10 +39,7 @@ const deleteConfirmationModal = document.querySelector(
 const deleteConfirmationBtn =
   deleteConfirmationModal.querySelector(".modal__button");
 
-const renderCard = (cardData) => {
-  const cardElement = createCard(cardData);
-  cardSection.addItem(cardElement);
-};
+// const renderCard =
 
 /* -------------------------------------------------------------------------- */
 /*                               Class Instances                              */
@@ -69,11 +67,6 @@ deleteConfirmation.setEventListeners();
 
 const cardPreviewPopup = new PopupWithImage("#image-modal");
 cardPreviewPopup.setEventListeners();
-
-const cardSection = new Section(
-  { items: initialCards, renderer: renderCard },
-  ".cards__list"
-);
 
 const user = new UserInfo({
   name: ".profile__title",
@@ -118,9 +111,10 @@ function handleProfileAddSubmit(newCardData) {
   console.log(newCardData); //debugging
   api
     .addNewCard(newCardData.title, newCardData.url)
-    .then((res) => {
-      renderCard(res);
+    .then((newCardData) => {
+      const cardElement = createCard(newCardData);
       addCardPopup.close();
+      cardSection.addItem(cardElement);
     })
     .catch((err) => {
       console.log(err);
@@ -149,6 +143,7 @@ function handleAvatarEditSubmit(link) {
 }
 
 function handleLikes(cardData) {
+  console.log(cardData); //debugging
   if (!cardData.like) {
     //if not liked
     console.log(cardData.like);
@@ -241,14 +236,26 @@ profileAvatarSubmitBtn.addEventListener("submit", handleAvatarEditSubmit);
 /* -------------------------------------------------------------------------- */
 /*                               Initial Render                               */
 /* -------------------------------------------------------------------------- */
+let cardSection;
 
 api
   .getUserAndCards()
-  .then(({ userInfo, cards }) => {
-    console.log({ userInfo, cards });
+  .then(([userInfo, initialCards]) => {
+    console.log([userInfo, initialCards]); //debugging
+    cardSection = new Section(
+      {
+        items: initialCards,
+        renderer: (cardData) => {
+          const cardElement = createCard(cardData);
+          cardSection.addItem(cardElement);
+        },
+      },
+      ".cards__list"
+    );
     user.setUserInfo({ name: userInfo.name, job: userInfo.about });
     user.setUserAvatar(userInfo.avatar);
-    cardSection.renderItems(cards);
+
+    cardSection.renderItems();
   })
   .catch((err) => {
     console.error(err);
