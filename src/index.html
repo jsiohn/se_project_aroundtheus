@@ -17,11 +17,18 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%=require('./images/profilePic.jpg')%>"
-            alt="profile picture"
-            class="profile__picture"
-          />
+          <div class="profile__avatar-wrapper">
+            <img
+              src="<%=require('./images/profilePic.jpg')%>"
+              alt="profile picture"
+              class="profile__picture"
+            />
+            <button
+              type="button"
+              class="profile__avatar-edit"
+              id="avatar-edit-button"
+            ></button>
+          </div>
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -78,7 +85,7 @@
           <span class="modal__error" id="profile-description-error"
             >Please fill out this field.</span
           >
-          <button class="modal__button" type="submit">Save</button>
+          <button class="modal__button" id="profile-edit-submit" type="submit">Save</button>
         </form>
       </div>
     </div>
@@ -113,7 +120,38 @@
           <span class="modal__error" id="card-url-error"
             >Please enter a web address.</span
           >
-          <button class="modal__button" type="submit">Save</button>
+          <button class="modal__button" id="card-add-submit" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ------------------------- CONFIRMATION MODAL -------------------------- -->
+    <div class="modal" id="delete-confirmation-modal">
+      <div class="modal__container">
+        <button class="modal__close" id="modal-close-button"></button>
+        <h2 class="modal__heading">Are you sure?</h2>
+        <button class="modal__button" type="submit">Yes</button>
+      </div>
+    </div>
+
+    <!-- -------------------------- AVATAR MODAL -------------------------- -->
+    <div class="modal" id="avatar-modal">
+      <div class="modal__container">
+        <button class="modal__close" id="modal-close-button"></button>
+        <h2 class="modal__heading">Change profile picture</h2>
+        <form class="modal__form" id="avatar-form">
+          <input
+            type="url"
+            name="url"
+            id="avatar-url"
+            class="modal__form-input"
+            placeholder="Image URL"
+            required
+          />
+          <span class="modal__error" id="avatar-url-error"
+            >Please enter a web address.</span
+          >
+          <button class="modal__button" id="avatar-edit-submit" type="submit">Save</button>
         </form>
       </div>
     </div>
